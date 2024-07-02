@@ -18,8 +18,21 @@
 # include <unistd.h>
 # include <stdarg.h>
 
+typedef struct s_stacks
+{
+	int				n;
+	int				i;
+	struct s_stacks	*prev;
+	struct s_stacks	*next;
+}				t_stacks;
+
+//MAIN
+int			check_numbers(char **numbers);
+
 //UTILS
-int			ft_atoi(const char *str);
+long		ft_atoi(const char *str);
+char		**ft_split(const char *s, char c);
+char		*ft_substr(const char *s, unsigned int start, size_t len);
 int			ft_printf(const char *arg, ...);
 int			ft_putchar(char c, int count);
 int			ft_putstr(char *str, int count);

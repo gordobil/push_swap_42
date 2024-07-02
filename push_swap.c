@@ -6,48 +6,55 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:44:26 by ngordobi          #+#    #+#             */
-/*   Updated: 2024/06/28 13:41:44 by ngordobi         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:19:49 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*load_a(int size, char **numbers)
+/*t_stacks	*load_a(char **numbers)
 {
-	int	*a;
-	int	i;
-	int	j;
-	int	k;
+	t_stacks	*a;
+	t_stacks	*temp_p;
+	t_stacks	*first;
+	int			i;
 
-	a = malloc(size * sizeof(int));
-	if (!a)
-		return (NULL);
-	k = 0;
-	i = 0;
+	i = 1;
 	while (numbers[i] != NULL)
 	{
-		j = 0;
-		while (numbers[i][j] != '\0')
-		{
-			if (numbers[i][j] < '0' || numbers[i][j] > '9')
-				return (NULL);
-			j++;	
-		}
-		a[k] = ft_atoi(numbers[i]);
-		k++;
+		a->n = ft_atoi(numbers[i]);
+		a->i = i;
+		if (i == 1)
+			first = a;
+		else
+			a->prev = temp_p;
+		temp_p = a;
+		a = a->next;
 		i++;
 	}
-}
+	first->prev = temp_p;
+	return (a);
+}*/
 
 int	main(int argc, char **argv)
 {
-	int	*a;
-	int	*b;
+	t_stacks	*a;
+	t_stacks	*b;
+	int	i = 0;
 
-	if (argc < 3 || !argv)
-		return (ft_printf("Error\nInvalid arguments\n"), 0);
-	a = load_a(argc - 1, argv);
-	if (a == NULL)
-		return (ft_printf("Error\nError in arguments"), 0);
+	if (argc < 2 || (argc >= 2 && !argv[1][0]))
+	{
+		ft_printf ("Error\nInvalid number of arguments passed\n");
+		return (0);
+	}
+	if (argc == 2)
+		argv = ft_split (argv[1], ' ');
+	if (argv == NULL || check_numbers(argv) != 0)
+	{
+		ft_printf ("Error\nInvalid argument found\n");
+		return (0);
+	}
+	//a = load_a(argv);
+	b = NULL;
 	return (0);
 }

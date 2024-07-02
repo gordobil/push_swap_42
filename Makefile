@@ -18,8 +18,11 @@ CC_FLAGS			=	-Wall -Wextra -Werror
 UTILS				=	./utils/
 
 SOURCES				=	push_swap.c \
+						checks.c \
 
 SOURCES_PF			=	$(UTILS)ft_atoi.c \
+						$(UTILS)ft_split.c \
+						$(UTILS)ft_substr.c \
 						$(UTILS)ft_printf.c \
 						$(UTILS)ft_putchar.c \
 						$(UTILS)ft_putstr.c \
@@ -60,7 +63,7 @@ $(NAME):		$(OBJECTS) $(OBJECTS_PF) $(INCLUDE)
 				mkdir ./utils/objects/
 				mv $(OBJECTS) ./objects/
 				mv $(OBJECTS_PF) ./utils/objects/
-				echo "\n\n··················· Compilation complete ···················"
+				echo "\n···························· Compilation complete ····························"
 				echo "$$PUSH_SWAP"
 
 clean:
@@ -73,10 +76,7 @@ clean:
 
 fclean:			clean
 				rm -rf $(NAME)
-				echo "· Executable correctly removed."
+				echo "· Executable correctly removed.\n"
 
-nl:
-				echo "\n·······························"
-
-re:				fclean nl all
+re:				fclean all
 .PHONY:			all clean fclean nl re
