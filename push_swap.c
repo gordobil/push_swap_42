@@ -6,42 +6,37 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:44:26 by ngordobi          #+#    #+#             */
-/*   Updated: 2024/07/02 14:19:49 by ngordobi         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:01:22 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*t_stacks	*load_a(char **numbers)
+void	load_a(t_stacks **stack_a, char **numbers)
 {
-	t_stacks	*a;
-	t_stacks	*temp_p;
-	t_stacks	*first;
 	int			i;
+	int			n;
 
 	i = 1;
-	while (numbers[i] != NULL)
+	while (numbers[i])
 	{
-		a->n = ft_atoi(numbers[i]);
-		a->i = i;
-		if (i == 1)
-			first = a;
-		else
-			a->prev = temp_p;
-		temp_p = a;
-		a = a->next;
+		n = ft_atoi(numbers[i]);
+		ft_printf("n:%d\n", n);
+		append_new_node(stack_a, n);
 		i++;
 	}
-	first->prev = temp_p;
-	return (a);
-}*/
+}
+
+void	push_swap(char **numbers)
+{
+	t_stacks	*stack_a;
+	t_stacks	*stack_b;
+
+	load_a(&stack_a, numbers);
+}
 
 int	main(int argc, char **argv)
 {
-	t_stacks	*a;
-	t_stacks	*b;
-	int	i = 0;
-
 	if (argc < 2 || (argc >= 2 && !argv[1][0]))
 	{
 		ft_printf ("Error\nInvalid number of arguments passed\n");
@@ -54,7 +49,6 @@ int	main(int argc, char **argv)
 		ft_printf ("Error\nInvalid argument found\n");
 		return (0);
 	}
-	//a = load_a(argv);
-	b = NULL;
+	push_swap(argv);
 	return (0);
 }

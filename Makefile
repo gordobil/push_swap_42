@@ -18,7 +18,7 @@ CC_FLAGS			=	-Wall -Wextra -Werror
 UTILS				=	./utils/
 
 SOURCES				=	push_swap.c \
-						checks.c \
+						check_numbers.c \
 
 SOURCES_PF			=	$(UTILS)ft_atoi.c \
 						$(UTILS)ft_split.c \
@@ -30,6 +30,7 @@ SOURCES_PF			=	$(UTILS)ft_atoi.c \
 						$(UTILS)ft_putunbr.c \
 						$(UTILS)ft_puthex.c \
 						$(UTILS)ft_putptr.c \
+						$(UTILS)lst_utils.c \
 
 OBJECTS				=	$(SOURCES:%.c=%.o)
 OBJECTS_PF			=	$(SOURCES_PF:%.c=%.o)

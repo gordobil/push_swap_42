@@ -20,25 +20,28 @@
 
 typedef struct s_stacks
 {
-	int				n;
-	int				i;
-	struct s_stacks	*prev;
-	struct s_stacks	*next;
+	int					n;
+	struct s_stacks		*prev;
+	struct s_stacks		*next;
 }				t_stacks;
 
 //MAIN
-int			check_numbers(char **numbers);
+int				check_numbers(char **numbers);
 
 //UTILS
-long		ft_atoi(const char *str);
-char		**ft_split(const char *s, char c);
-char		*ft_substr(const char *s, unsigned int start, size_t len);
-int			ft_printf(const char *arg, ...);
-int			ft_putchar(char c, int count);
-int			ft_putstr(char *str, int count);
-int			ft_putnbr(int n, int count);
-int			ft_putunbr(unsigned int n, int count);
-int			ft_puthex(unsigned long n, int count, char arg_format);
-int			ft_putptr(unsigned long p, int count);
+long			ft_atoi(const char *str);
+char			**ft_split(const char *s, char c);
+char			*ft_substr(const char *s, unsigned int start, size_t len);
+int				ft_printf(const char *arg, ...);
+int				ft_putchar(char c, int count);
+int				ft_putstr(char *str, int count);
+int				ft_putnbr(int n, int count);
+int				ft_putunbr(unsigned int n, int count);
+int				ft_puthex(unsigned long n, int count, char arg_format);
+int				ft_putptr(unsigned long p, int count);
+
+//LST_UTILS
+void			append_new_node(t_stacks **stack, int n);
+t_stacks		*find_last_node(t_stacks *stack);
 
 #endif
