@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:40:08 by ngordobi          #+#    #+#             */
-/*   Updated: 2024/07/03 12:07:07 by ngordobi         ###   ########.fr       */
+/*   Updated: 2024/07/04 14:21:13 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	check_numbers(char **numbers)
 	int	i;
 	int	j;
 
-	i = 1;
+	i = 0;
 	while (numbers[i] != NULL)
 	{
 		j = 0;

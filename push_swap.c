@@ -6,23 +6,22 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:44:26 by ngordobi          #+#    #+#             */
-/*   Updated: 2024/07/03 14:01:22 by ngordobi         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:34:22 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	load_a(t_stacks **stack_a, char **numbers)
+void	load_stack_a(t_stacks **stack, char **numbers)
 {
-	int			i;
-	int			n;
+	int	i;
+	int	n;
 
-	i = 1;
+	i = 0;
 	while (numbers[i])
 	{
 		n = ft_atoi(numbers[i]);
-		ft_printf("n:%d\n", n);
-		append_new_node(stack_a, n);
+		append_node_end(stack, n, '0');
 		i++;
 	}
 }
@@ -32,7 +31,37 @@ void	push_swap(char **numbers)
 	t_stacks	*stack_a;
 	t_stacks	*stack_b;
 
-	load_a(&stack_a, numbers);
+	stack_a = NULL;
+	stack_b = NULL;
+	load_stack_a(&stack_a, numbers);
+	print_stack(&stack_a);
+	ft_printf("%d\n", node_count(stack_a));
+	
+	append_node_end(&stack_a, 0, 0);
+	print_stack(&stack_a);
+	ft_printf("%d\n", node_count(stack_a));
+	
+	delete_node(stack_a, 'e');
+	print_stack(&stack_a);
+	ft_printf("%d\n", node_count(stack_a));
+	
+	append_node_start(&stack_a, 0, 0);
+	print_stack(&stack_a);
+	ft_printf("%d\n", node_count(stack_a));
+	
+	delete_node(stack_a, 's');
+	print_stack(&stack_a);
+	ft_printf("%d\n", node_count(stack_a));
+	while (check_if_sorted(stack_a) != 0)
+	{
+		if (node_count(stack_a) == 2)
+			ft_printf("%d\n", node_count(stack_a));
+		else if (node_count(stack_a) == 3)
+			ft_printf("%d\n", node_count(stack_a));
+		else
+			ft_printf("%d\n", node_count(stack_a));
+		break ;
+	}
 }
 
 int	main(int argc, char **argv)
@@ -44,6 +73,8 @@ int	main(int argc, char **argv)
 	}
 	if (argc == 2)
 		argv = ft_split (argv[1], ' ');
+	else
+		argv++;
 	if (argv == NULL || check_numbers(argv) != 0)
 	{
 		ft_printf ("Error\nInvalid argument found\n");

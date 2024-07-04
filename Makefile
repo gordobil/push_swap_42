@@ -31,6 +31,8 @@ SOURCES_PF			=	$(UTILS)ft_atoi.c \
 						$(UTILS)ft_puthex.c \
 						$(UTILS)ft_putptr.c \
 						$(UTILS)lst_utils.c \
+						$(UTILS)lst_append_nodes.c \
+						$(UTILS)lst_print_stack.c \
 
 OBJECTS				=	$(SOURCES:%.c=%.o)
 OBJECTS_PF			=	$(SOURCES_PF:%.c=%.o)

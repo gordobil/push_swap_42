@@ -41,7 +41,13 @@ int				ft_puthex(unsigned long n, int count, char arg_format);
 int				ft_putptr(unsigned long p, int count);
 
 //LST_UTILS
-void			append_new_node(t_stacks **stack, int n);
+void			load_stack_a(t_stacks **stack, char **numbers);
+void			append_node_end(t_stacks **stack, int nbr, char delete);
+void			append_node_start(t_stacks **stack, int nbr, char delete);
+void			delete_node(t_stacks *stack, char positions);
 t_stacks		*find_last_node(t_stacks *stack);
+int				check_if_sorted(t_stacks *stack);
+int				node_count(t_stacks *stack);
+void			print_stack(t_stacks **stack);
 
 #endif
