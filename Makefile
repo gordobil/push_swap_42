@@ -19,6 +19,7 @@ UTILS				=	./utils/
 
 SOURCES				=	push_swap.c \
 						check_numbers.c \
+						move_nodes.c \
 
 SOURCES_PF			=	$(UTILS)ft_atoi.c \
 						$(UTILS)ft_split.c \
@@ -33,6 +34,7 @@ SOURCES_PF			=	$(UTILS)ft_atoi.c \
 						$(UTILS)lst_utils.c \
 						$(UTILS)lst_append_nodes.c \
 						$(UTILS)lst_print_stack.c \
+						$(UTILS)put_movement.c \
 
 OBJECTS				=	$(SOURCES:%.c=%.o)
 OBJECTS_PF			=	$(SOURCES_PF:%.c=%.o)

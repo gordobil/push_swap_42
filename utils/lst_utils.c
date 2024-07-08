@@ -51,3 +51,22 @@ t_stacks	*find_last_node(t_stacks *stack)
 		stack = stack->next;
 	return (stack);
 }
+
+void	delete_node(t_stacks **stack, char position)
+{
+	if (position == 's')
+	{
+		*stack = (*stack)->next;
+		free((*stack)->prev);
+		(*stack)->prev = NULL;
+	}
+	else if (position == 'e')
+	{
+		*stack = find_last_node(*stack);
+		*stack = (*stack)->prev;
+		free((*stack)->next);
+		(*stack)->next = NULL;
+		while ((*stack)->prev != NULL)
+			*stack = (*stack)->prev;
+	}
+}

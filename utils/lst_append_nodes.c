@@ -12,14 +12,17 @@
 
 #include "../push_swap.h"
 
-void	append_node_end(t_stacks **stack, int nbr, char delete)
+int	append_node_end(t_stacks **stack, int nbr)
 {
 	t_stacks	*new_node;
 	t_stacks	*last_node;
 	
 	new_node = malloc(sizeof(t_stacks));
-	if (!new_node)
-		return ;
+	if (!new_node || !stack)
+	{
+		ft_printf("Error\nError appending node\n");
+		return (-1);
+	}
 	new_node->next = NULL;
 	new_node->n = nbr;
 	if (!(*stack))
@@ -33,35 +36,25 @@ void	append_node_end(t_stacks **stack, int nbr, char delete)
 		last_node->next = new_node;
 		new_node->prev = last_node;
 	}
-	delete_node(*stack, delete);
+	return (0);
 }
 
-void	append_node_start(t_stacks **stack, int nbr, char delete)
+int	append_node_start(t_stacks **stack, int nbr)
 {
 	t_stacks	*new_node;
 	t_stacks	*first_node;
 	
 	first_node = *stack;
 	new_node = malloc(sizeof(t_stacks));
+	if (!new_node || !stack)
+	{
+		ft_printf("Error\nError appending node\n");
+		return (-1);
+	}
 	new_node->n = nbr;
 	new_node->prev = NULL;
 	new_node->next = first_node;
 	first_node->prev = new_node;
 	*stack = new_node;
-	delete_node(*stack, delete);
-}
-
-void	delete_node(t_stacks *stack, char position)
-{
-	if (position == 's')
-	{
-		stack = stack->next;
-		stack->prev = NULL;
-	}
-	else if (position == 'e')
-	{
-		stack = find_last_node(stack);
-		stack = stack->prev;
-		stack->next = NULL;
-	}
+	return (0);
 }

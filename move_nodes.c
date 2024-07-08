@@ -1,0 +1,74 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_nodes.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/08 11:54:06 by ngordobi          #+#    #+#             */
+/*   Updated: 2024/07/08 11:54:06 by ngordobi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+int	swap(t_stacks **stack, t_stacks **stack2, char mov)
+{
+	void	*node1;
+	void	*node2;
+	void	*node3;
+	int		n1;
+	int		n2;
+
+	if (node_count(*stack) <= 1)
+		return (-1);
+	node1 = *stack;
+	node2 = (*stack)->next;
+	node3 = (*stack)->next->next;
+	n1 = (*stack)->n;
+	n2 = (*stack)->next->n;
+	*stack = node2;
+	(*stack)->n = n2;
+	(*stack)->next = node1;
+	(*stack)->next->prev = node2;
+	(*stack)->next->n = n1;
+	(*stack)->next->next = node3;
+	(*stack)->next->next->prev = node1;
+	(*stack)->prev = NULL;
+	if (mov == 's' && stack2 != NULL)
+		return (swap(stack2, NULL, mov));
+	else
+		return (put_movement("s", mov));
+}
+
+int	push(t_stacks **src, t_stacks **dst, char mov)
+{
+	if (*src == NULL)
+		return (-1);
+	append_node_start(dst, (*src)->n);
+	delete_node(src, 's');
+	return (put_movement("p", mov));
+}
+
+int	rotate(t_stacks **stack, t_stacks **stack2, char mov)
+{
+	append_node_end(stack, (*stack)->n);
+	delete_node(stack, 's');
+	if (mov == 'r' && stack2 != NULL)
+		return (rotate(stack2, NULL, mov));
+	else
+		return (put_movement("r", mov));
+}
+
+int	rev_rotate(t_stacks **stack, t_stacks **stack2, char mov)
+{
+	t_stacks	*node;
+
+	node = find_last_node(*stack);
+	append_node_start(stack, node->n);
+	delete_node(stack, 'e');
+	if (mov == 'r' && stack2 != NULL)
+		return (rev_rotate(stack2, NULL, mov));
+	else
+		return (put_movement("rr", mov));
+}
