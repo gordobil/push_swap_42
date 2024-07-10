@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_nodes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 11:54:06 by ngordobi          #+#    #+#             */
-/*   Updated: 2024/07/08 11:54:06 by ngordobi         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:37:35 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	swap(t_stacks **stack, t_stacks **stack2, char mov)
 	int		n1;
 	int		n2;
 
-	if (node_count(*stack) <= 1)
+	if (node_count(*stack) <= 1 || stack == NULL || !stack)
 		return (-1);
 	node1 = *stack;
 	node2 = (*stack)->next;
@@ -38,26 +38,31 @@ int	swap(t_stacks **stack, t_stacks **stack2, char mov)
 	if (mov == 's' && stack2 != NULL)
 		return (swap(stack2, NULL, mov));
 	else
-		return (put_movement("s", mov));
+		return (print_movements("s", mov));
 }
 
 int	push(t_stacks **src, t_stacks **dst, char mov)
 {
-	if (*src == NULL)
+	if (src == NULL || !(*src))
 		return (-1);
-	append_node_start(dst, (*src)->n);
+	if (dst == NULL || !(*dst))
+		append_node_end(dst, (*src)->n);
+	else
+		append_node_start(dst, (*src)->n);
 	delete_node(src, 's');
-	return (put_movement("p", mov));
+	return (print_movements("p", mov));
 }
 
 int	rotate(t_stacks **stack, t_stacks **stack2, char mov)
 {
+	if (!stack || *stack == NULL)
+		return (-1);
 	append_node_end(stack, (*stack)->n);
 	delete_node(stack, 's');
 	if (mov == 'r' && stack2 != NULL)
 		return (rotate(stack2, NULL, mov));
 	else
-		return (put_movement("r", mov));
+		return (print_movements("r", mov));
 }
 
 int	rev_rotate(t_stacks **stack, t_stacks **stack2, char mov)
@@ -70,5 +75,5 @@ int	rev_rotate(t_stacks **stack, t_stacks **stack2, char mov)
 	if (mov == 'r' && stack2 != NULL)
 		return (rev_rotate(stack2, NULL, mov));
 	else
-		return (put_movement("rr", mov));
+		return (print_movements("rr", mov));
 }

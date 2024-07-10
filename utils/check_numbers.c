@@ -6,11 +6,11 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:40:08 by ngordobi          #+#    #+#             */
-/*   Updated: 2024/07/04 14:21:13 by ngordobi         ###   ########.fr       */
+/*   Updated: 2024/07/09 12:20:21 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	check_min_max(long n)
 {

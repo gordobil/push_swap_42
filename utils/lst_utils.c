@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:02:24 by ngordobi          #+#    #+#             */
-/*   Updated: 2024/07/04 14:33:01 by ngordobi         ###   ########.fr       */
+/*   Updated: 2024/07/09 13:45:19 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,18 @@ void	delete_node(t_stacks **stack, char position)
 		while ((*stack)->prev != NULL)
 			*stack = (*stack)->prev;
 	}
+}
+
+t_stacks	*find_smallest_node(t_stacks **stack)
+{
+	t_stacks	*smallest;
+
+	smallest = *stack;
+	while (*stack != NULL)
+	{
+		if ((*stack)->n < smallest->n)
+			smallest = *stack;
+		*stack = (*stack)->next;
+	}
+	return (smallest);
 }

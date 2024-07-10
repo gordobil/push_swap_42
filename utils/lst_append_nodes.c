@@ -6,7 +6,7 @@
 /*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:36:33 by ngordobi          #+#    #+#             */
-/*   Updated: 2024/07/04 16:34:41 by ngordobi         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:10:24 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	append_node_end(t_stacks **stack, int nbr)
 	}
 	new_node->next = NULL;
 	new_node->n = nbr;
-	if (!(*stack))
+	if (!(*stack) || stack == NULL)
 	{
 		*stack = new_node;
 		new_node->prev = NULL;

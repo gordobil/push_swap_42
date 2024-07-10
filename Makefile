@@ -18,10 +18,12 @@ CC_FLAGS			=	-Wall -Wextra -Werror
 UTILS				=	./utils/
 
 SOURCES				=	push_swap.c \
-						check_numbers.c \
 						move_nodes.c \
+						update_stacks.c \
+						sort_stacks.c \
 
-SOURCES_PF			=	$(UTILS)ft_atoi.c \
+SOURCES_PF			=	$(UTILS)check_numbers.c \
+						$(UTILS)ft_atoi.c \
 						$(UTILS)ft_split.c \
 						$(UTILS)ft_substr.c \
 						$(UTILS)ft_printf.c \
@@ -34,7 +36,7 @@ SOURCES_PF			=	$(UTILS)ft_atoi.c \
 						$(UTILS)lst_utils.c \
 						$(UTILS)lst_append_nodes.c \
 						$(UTILS)lst_print_stack.c \
-						$(UTILS)put_movement.c \
+						$(UTILS)print_movements.c \
 
 OBJECTS				=	$(SOURCES:%.c=%.o)
 OBJECTS_PF			=	$(SOURCES_PF:%.c=%.o)

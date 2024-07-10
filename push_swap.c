@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngordobi <ngordobi@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ngordobi <ngordobi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 13:38:10 by ngordobi          #+#    #+#             */
-/*   Updated: 2024/07/08 13:38:10 by ngordobi         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:02:50 by ngordobi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,101 +30,26 @@ int	load_stack(t_stacks **stack, char **numbers)
 
 void	push_swap(char **numbers)
 {
-	t_stacks	*stack_a;
-	t_stacks	*stack_b;
-	char	**b;
+	t_stacks	*a;
+	t_stacks	*b;
+	int			mov;
 
-	b = malloc(5 * sizeof(char*));
-	b[0] = "21";
-	b[1] = "22";
-	b[2] = "23";
-	b[3] = "24";
-	b[4] = NULL;
-	stack_a = NULL;
-	stack_b = NULL;
-	load_stack(&stack_a, numbers);
-	load_stack(&stack_b, b);
-	print_stack(&stack_a);
-	ft_printf("nodes a:%d\n\n", node_count(stack_a));
-	print_stack(&stack_b);
-	ft_printf("nodes b:%d\n\n", node_count(stack_b));
-	
-	swap(&stack_a, &stack_b, 's');
-	print_stack(&stack_a);
-	ft_printf("nodes a:%d\n\n", node_count(stack_a));
-	print_stack(&stack_b);
-	ft_printf("nodes b:%d\n\n", node_count(stack_b));
-
-	swap(&stack_a, NULL, 'a');
-	print_stack(&stack_a);
-	ft_printf("nodes a:%d\n\n", node_count(stack_a));
-	print_stack(&stack_b);
-	ft_printf("nodes b:%d\n\n", node_count(stack_b));
-
-	swap(&stack_b, NULL, 'b');
-	print_stack(&stack_a);
-	ft_printf("nodes a:%d\n\n", node_count(stack_a));
-	print_stack(&stack_b);
-	ft_printf("nodes b:%d\n\n", node_count(stack_b));
-
-	push(&stack_b, &stack_a, 'a');
-	print_stack(&stack_a);
-	ft_printf("nodes a:%d\n\n", node_count(stack_a));
-	print_stack(&stack_b);
-	ft_printf("nodes b:%d\n\n", node_count(stack_b));
-
-	push(&stack_a, &stack_b, 'b');
-	print_stack(&stack_a);
-	ft_printf("nodes a:%d\n\n", node_count(stack_a));
-	print_stack(&stack_b);
-	ft_printf("nodes b:%d\n\n", node_count(stack_b));
-
-	rotate(&stack_a, NULL, 'a');
-	print_stack(&stack_a);
-	ft_printf("nodes a:%d\n\n", node_count(stack_a));
-	print_stack(&stack_b);
-	ft_printf("nodes b:%d\n\n", node_count(stack_b));
-
-	rotate(&stack_b, NULL, 'b');
-	print_stack(&stack_a);
-	ft_printf("nodes a:%d\n\n", node_count(stack_a));
-	print_stack(&stack_b);
-	ft_printf("nodes b:%d\n\n", node_count(stack_b));
-
-	rotate(&stack_a, &stack_b, 'r');
-	print_stack(&stack_a);
-	ft_printf("nodes a:%d\n\n", node_count(stack_a));
-	print_stack(&stack_b);
-	ft_printf("nodes b:%d\n\n", node_count(stack_b));
-
-	rev_rotate(&stack_a, NULL, 'a');
-	print_stack(&stack_a);
-	ft_printf("nodes a:%d\n\n", node_count(stack_a));
-	print_stack(&stack_b);
-	ft_printf("nodes b:%d\n\n", node_count(stack_b));
-
-	rev_rotate(&stack_b, NULL, 'b');
-	print_stack(&stack_a);
-	ft_printf("nodes a:%d\n\n", node_count(stack_a));
-	print_stack(&stack_b);
-	ft_printf("nodes b:%d\n\n", node_count(stack_b));
-
-	rev_rotate(&stack_a, &stack_b, 'r');
-	print_stack(&stack_a);
-	ft_printf("nodes a:%d\n\n", node_count(stack_a));
-	print_stack(&stack_b);
-	ft_printf("nodes b:%d\n\n", node_count(stack_b));
-
-	/* while (check_if_sorted(stack_a) != 0)
+	a = NULL;
+	b = NULL;
+	mov = 0;
+	load_stack(&a, numbers);
+	print_stacks(&a, &b, 0);
+	while (node_count(a) > 3)
+		push(&a, &b, 'b');
+	print_stacks(&a, &b, 0);
+	if (check_if_sorted(a) != 0)
+		sort_2o3(&a);
+	while (b != NULL)
 	{
-		if (node_count(stack_a) == 2)
-			ft_printf("%d\n", node_count(stack_a));
-		else if (node_count(stack_a) == 3)
-			ft_printf("%d\n", node_count(stack_a));
-		else
-			ft_printf("%d\n", node_count(stack_a));
-		break ;
-	} */
+		print_stacks(&a, &b, 0);
+		update_stacks(a, b);
+		sort(&a, &b);
+	}
 }
 
 int	main(int argc, char **argv)
