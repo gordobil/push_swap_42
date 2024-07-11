@@ -38,15 +38,16 @@ void	push_swap(char **numbers)
 	b = NULL;
 	mov = 0;
 	load_stack(&a, numbers);
-	print_stacks(&a, &b, 0);
+	update_stacks(a, b);
+	print_stacks(&a, &b, 1);
 	while (node_count(a) > 3)
 		push(&a, &b, 'b');
-	print_stacks(&a, &b, 0);
+	print_stacks(&a, &b, 1);
 	if (check_if_sorted(a) != 0)
 		sort_2o3(&a);
 	while (b != NULL)
 	{
-		print_stacks(&a, &b, 0);
+		print_stacks(&a, &b, 1);
 		update_stacks(a, b);
 		sort(&a, &b);
 	}
@@ -56,16 +57,17 @@ int	main(int argc, char **argv)
 {
 	if (argc < 2 || (argc >= 2 && !argv[1][0]))
 	{
-		ft_printf ("Error\nInvalid number of arguments passed\n");
+		ft_printf ("Error\nInvalid arguments\n");
 		return (0);
 	}
 	if (argc == 2)
 		argv = ft_split (argv[1], ' ');
 	else
 		argv++;
-	if (argv == NULL || check_numbers(argv) != 0)
+	if (argv == NULL || check_numbers(argv) != 0 || argv[0] == NULL
+		|| argv[1] == NULL)
 	{
-		ft_printf ("Error\nInvalid argument found\n");
+		ft_printf ("Error\nInvalid arguments\n");
 		return (0);
 	}
 	push_swap(argv);

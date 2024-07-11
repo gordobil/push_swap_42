@@ -21,7 +21,9 @@ void	print_stack(t_stacks **stack, int details)
 	while (node)
 	{
 		if (details == 1)
-			ft_printf("number:%d pointer:%p prev:%p next:%p\n", node->n, node, node->prev, node->next);
+			ft_printf("n%d:%d mid:%d cost:%d move:%d \n\tpointer:%p prev:%p next:%p target:%p\n", node->i, node->n, node->mid, node->cost, node->move, node, node->prev, node->next, node->target);
+		// else if (details == 2)
+		// 	ft_printf("n%d:%d-->t%d:%d mid:%d cost:%d move:%d \n\tpointer:%p prev:%p next:%p target:%p\n", node->i, node->n, node->target->i, node->target->n, node->mid, node->cost, node->move, node, node->prev, node->next, node->target);
 		else
 		{
 			ft_printf("%d", node->n);

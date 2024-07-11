@@ -62,10 +62,8 @@ int	check_numbers(char **numbers)
 		while (numbers[i][j] != '\0')
 		{
 			if (numbers[i][j] < '0' || numbers[i][j] > '9')
-			{
 				if (numbers[i][j] != '-' && numbers[i][j] != '\0')
 					return (-1);
-			}
 			j++;
 		}
 		if (check_dups(numbers, numbers[i], i) != 0)
