@@ -29,10 +29,12 @@ void	update_movement(t_stacks *b)
 	}
 }
 
-void	update_cost(t_stacks *b, int a_size)
+void	update_cost(t_stacks *a, t_stacks *b)
 {
+	int	a_size;
 	int	b_size;
 
+	a_size = node_count(a);
 	b_size = node_count(b);
 	while (b != NULL)
 	{
@@ -40,10 +42,10 @@ void	update_cost(t_stacks *b, int a_size)
 			b->cost = b_size - b->i;
 		else
 			b->cost = b->i;
-		if (b->target->mid = 1)
-			b->cost += a_size - b->target->i;
+		if (b->target->mid == 1)
+			b->cost = b->cost + (a_size - b->target->i);
 		else
-			b->cost += b->target->i;
+			b->cost = b->cost + b->target->i;
 		ft_printf ("b%d --> a%d = %d$\n", b->n, b->target->n, b->cost);
 		b = b->next;
 	}
@@ -87,7 +89,7 @@ void	update_index(t_stacks *stack)
 	while (stack)
 	{
 		stack->i = i;
-		if (i >= total / 2)
+		if (i > total / 2)
 			stack->mid = 1;
 		else
 			stack->mid = -1;
@@ -104,6 +106,6 @@ void	update_stacks(t_stacks *a, t_stacks *b)
 	update_target(a, b);
 	update_index(a);
 	print_stacks(&a, &b, 1);
-	update_cost(b, node_count(a));
+	update_cost(a, b);
 	print_stacks(&a, &b, 1);
 }
