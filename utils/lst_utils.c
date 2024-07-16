@@ -71,16 +71,27 @@ void	delete_node(t_stacks **stack, char position)
 	}
 }
 
-t_stacks	*find_smallest_node(t_stacks **stack)
+t_stacks	*find_smallest_node(t_stacks *stack)
 {
 	t_stacks	*smallest;
 
-	smallest = *stack;
-	while (*stack != NULL)
+	smallest = stack;
+	while (stack != NULL)
 	{
-		if ((*stack)->n < smallest->n)
-			smallest = *stack;
-		*stack = (*stack)->next;
+		if (stack->n < smallest->n)
+			smallest = stack;
+		stack = stack->next;
 	}
 	return (smallest);
 }
+
+	// t_stacks	*node;
+
+	// if (position == 's')
+	// {
+	// 	node = *stack;
+	// 	*stack = (*stack)->next;
+	// 	free(node);
+	// 	node = NULL;
+	// 	(*stack)->prev = NULL;
+	// }

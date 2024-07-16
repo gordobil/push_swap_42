@@ -39,17 +39,17 @@ void	push_swap(char **numbers)
 	mov = 0;
 	load_stack(&a, numbers);
 	update_stacks(a, b);
-	print_stacks(&a, &b, 1);
 	while (node_count(a) > 3)
 		push(&a, &b, 'b');
-	print_stacks(&a, &b, 1);
-	if (check_if_sorted(a) != 0)
-		sort_2o3(&a);
+	// if (check_if_sorted(a) != 0)
+	//  	sort_2o3(&a);
 	while (b != NULL)
 	{
-		print_stacks(&a, &b, 1);
 		update_stacks(a, b);
-		sort(&a, &b);
+		print_stacks(&a, &b, 1);
+		sort(a, b);
+		while (a->prev != NULL)
+			a = a->prev;
 	}
 }
 
