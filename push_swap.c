@@ -48,8 +48,8 @@ void	push_swap(char **numbers)
 		update_stacks(a, b);
 		print_stacks(&a, &b, 1);
 		sort(a, b);
-		while (a->prev != NULL)
-			a = a->prev;
+		while (b->prev != NULL)
+			
 	}
 }
 
