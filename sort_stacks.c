@@ -31,37 +31,27 @@ void	sort(t_stacks *a, t_stacks *b)
 
 	a_mov = a;
 	b_mov = b;
-	ft_printf("\n--------SORT-------\n");
 	while (b_mov->move != 1 && b_mov)
 		b_mov = b_mov->next;
 	while (a_mov != b_mov->target && a_mov)
 		a_mov = a_mov->next;
-	print_stacks(&a, &b, 1);
-	ft_printf("\n--------rotate r-------\n");
 	if (a_mov->mid == -1 && b_mov->mid == -1)
 		while (a->n != a_mov->n && b->n != b_mov->n)
 			rotate(&a, &b, 'r');
 	else if (a_mov->mid == 1 && b_mov->mid == 1)
 		while (a->n != a_mov->n && b->n != b_mov->n)
 			rev_rotate(&a, &b, 'r');
-	print_stacks(&a, &b, 1);
-	ft_printf("\n--------rotate a-------\n");
 	if (a_mov->mid == -1)
 		while (a->n != a_mov->n)
 			rotate(&a, NULL, 'a');
 	else if (a_mov->mid == 1)
 		while (a->n != a_mov->n)
 			rev_rotate(&a, NULL, 'a');
-	print_stacks(&a, &b, 1);
-	ft_printf("\n--------rotate b-------\n");
 	if (b_mov->mid == -1)
 		while (b->n != b_mov->n)
 			rotate(&b, NULL, 'b');
 	else if (b_mov->mid == 1)
 		while (b->n != b_mov->n)
 			rev_rotate(&b, NULL, 'b');
-	print_stacks(&a, &b, 1);
-	ft_printf("\n--------push a-------\n");
 	push(&b, &a, 'a');
-	print_stacks(&a, &b, 1);
 }

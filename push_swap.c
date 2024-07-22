@@ -49,7 +49,7 @@ void	push_swap(char **numbers)
 		print_stacks(&a, &b, 1);
 		sort(a, b);
 		while (b->prev != NULL)
-			
+			b = b->prev;
 	}
 }
 

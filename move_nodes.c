@@ -43,6 +43,29 @@ int	swap(t_stacks **stack, t_stacks **stack2, char mov)
 
 int	push(t_stacks **src, t_stacks **dst, char mov)
 {
+    t_stacks    *dst_first;
+
+	if (src == NULL || !(*src))
+		return (-1);
+	if (dst == NULL || !(*dst))
+		append_node_end(dst, (*src)->n);
+	else
+    	dst_first = *dst;
+    *dst = *src;
+    *src = (*src)->next;
+    if (*src != NULL) 
+        (*src)->prev = NULL;
+	if (dst_first != NULL)
+    	(*dst)->next = dst_first;
+	else
+		(*dst)->next = NULL;
+    (*dst)->prev = NULL;
+    dst_first->prev = *dst;
+	return (print_movements("p", mov));
+}
+
+/* int	push2(t_stacks **src, t_stacks **dst, char mov)
+{
 	if (src == NULL || !(*src))
 		return (-1);
 	if (dst == NULL || !(*dst))
@@ -51,7 +74,7 @@ int	push(t_stacks **src, t_stacks **dst, char mov)
 		append_node_start(dst, (*src)->n);
 	delete_node(src, 's');
 	return (print_movements("p", mov));
-}
+} */
 
 int	rotate(t_stacks **stack, t_stacks **stack2, char mov)
 {

@@ -83,9 +83,6 @@ void	update_index(t_stacks *stack)
 	int			total;
 
 	i = 0;
-	ft_printf("----------\n");
-	print_stacks(&stack, &stack, 1);
-	ft_printf("----------\n");
 	total = node_count(stack);
 	while (stack)
 	{
