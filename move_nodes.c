@@ -45,22 +45,24 @@ int	push(t_stacks **src, t_stacks **dst, char mov)
 {
     t_stacks    *dst_first;
 
+	dst_first = NULL;
 	if (src == NULL || !(*src))
 		return (-1);
-	if (dst == NULL || !(*dst))
+	if (dst == NULL)
 		append_node_end(dst, (*src)->n);
 	else
-    	dst_first = *dst;
-    *dst = *src;
+	{
+		dst_first = *dst;
+    	*dst = *src;
+	}
     *src = (*src)->next;
-    if (*src != NULL) 
-        (*src)->prev = NULL;
+	if (*src != NULL)
+	
+		(*src)->prev = NULL;
+	(*dst)->next = dst_first;
+	(*dst)->prev = NULL;
 	if (dst_first != NULL)
-    	(*dst)->next = dst_first;
-	else
-		(*dst)->next = NULL;
-    (*dst)->prev = NULL;
-    dst_first->prev = *dst;
+		dst_first->prev = *dst;	
 	return (print_movements("p", mov));
 }
 

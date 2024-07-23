@@ -38,6 +38,7 @@ void	push_swap(char **numbers)
 	b = NULL;
 	mov = 0;
 	load_stack(&a, numbers);
+	print_stacks(&a, &b, 1);
 	update_stacks(a, b);
 	while (node_count(a) > 3)
 		push(&a, &b, 'b');
@@ -48,8 +49,8 @@ void	push_swap(char **numbers)
 		update_stacks(a, b);
 		print_stacks(&a, &b, 1);
 		sort(a, b);
-		while (b->prev != NULL)
-			b = b->prev;
+		// while (b->prev != NULL)
+		// 	b = b->prev;
 	}
 }
 
