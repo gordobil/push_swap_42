@@ -63,6 +63,7 @@ void	last_sort(t_stacks **a)
 	smallest = find_smallest_node(*a);
 	while (*a != smallest)
 	{
+		print_stacks(*a, NULL, 1);
 		smallest = find_smallest_node(*a);
 		if (smallest->mid == -1)
 			rotate(a, NULL, 'a');
