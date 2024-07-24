@@ -12,12 +12,12 @@
 
 #include "../push_swap.h"
 
-void	print_stack(t_stacks **stack, int details)
+void	print_stack(t_stacks *stack, int details)
 {
 	t_stacks	*node;
 
 	node = malloc(sizeof(t_stacks));
-	node = *stack;	
+	node = stack;	
 	while (node)
 	{
 		if (details == 1)
@@ -36,12 +36,12 @@ void	print_stack(t_stacks **stack, int details)
 	}
 }
 
-void	print_stacks(t_stacks **a, t_stacks **b, int details)
+void	print_stacks(t_stacks *a, t_stacks *b, int details)
 {
 	ft_printf("\nSTACK A\n---------------------\n");
 	print_stack(a, details);
 	ft_printf("\nSTACK B\n---------------------\n");
-	if (!*b)
+	if (!b)
 		ft_printf("empty\n");
 	else
 		print_stack(b, details);

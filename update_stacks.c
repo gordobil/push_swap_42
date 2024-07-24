@@ -104,5 +104,4 @@ void	update_stacks(t_stacks *a, t_stacks *b)
 	update_target(a, b);
 	update_cost(a, b);
 	update_movement(b);
-	ft_printf ("\n------Stacks updated------\n");
 }

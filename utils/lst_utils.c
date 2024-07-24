@@ -84,14 +84,3 @@ t_stacks	*find_smallest_node(t_stacks *stack)
 	}
 	return (smallest);
 }
-
-	// t_stacks	*node;
-
-	// if (position == 's')
-	// {
-	// 	node = *stack;
-	// 	*stack = (*stack)->next;
-	// 	free(node);
-	// 	node = NULL;
-	// 	(*stack)->prev = NULL;
-	// }

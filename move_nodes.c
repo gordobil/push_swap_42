@@ -41,7 +41,7 @@ int	swap(t_stacks **stack, t_stacks **stack2, char mov)
 		return (print_movements("s", mov));
 }
 
-int	push(t_stacks **src, t_stacks **dst, char mov)
+/* int	push2(t_stacks **src, t_stacks **dst, char mov)
 {
     t_stacks    *dst_first;
 
@@ -66,7 +66,7 @@ int	push(t_stacks **src, t_stacks **dst, char mov)
 	return (print_movements("p", mov));
 }
 
-/* int	push2(t_stacks **src, t_stacks **dst, char mov)
+int	push(t_stacks **src, t_stacks **dst, char mov)
 {
 	if (src == NULL || !(*src))
 		return (-1);
@@ -76,7 +76,7 @@ int	push(t_stacks **src, t_stacks **dst, char mov)
 		append_node_start(dst, (*src)->n);
 	delete_node(src, 's');
 	return (print_movements("p", mov));
-} */
+}
 
 int	rotate(t_stacks **stack, t_stacks **stack2, char mov)
 {
@@ -101,4 +101,72 @@ int	rev_rotate(t_stacks **stack, t_stacks **stack2, char mov)
 		return (rev_rotate(stack2, NULL, mov));
 	else
 		return (print_movements("rr", mov));
+} */
+
+
+
+
+int	push(t_stacks **src, t_stacks **dst, char mov)
+{
+    t_stacks    *dst_first;
+
+	if (src == NULL || !(*src))
+		return (-1);
+    dst_first=*dst;
+    *dst=*src;
+    *src=(*src)->next;
+    if (*src != NULL) 
+        (*src)->prev=NULL;
+    (*dst)->next=dst_first;
+    (*dst)->prev=NULL;
+    if (dst_first != NULL)
+		dst_first->prev = *dst;	
+	return (print_movements("p", mov));
+}
+
+int	rotate(t_stacks **stack, t_stacks **stack2, char mov)
+{
+	t_stacks *stack_aux;
+	t_stacks *last_node;
+
+    if (!stack || *stack == NULL)
+		return (-1);
+    stack_aux=*stack;
+    last_node=find_last_node(*stack);
+    if (*stack == last_node)
+        return (0);
+    *stack=(*stack)->next;
+    if (*stack != NULL) 
+        (*stack)->prev=NULL;
+    last_node->next=stack_aux;
+    stack_aux->prev=last_node;
+    stack_aux->next=NULL;
+	if (mov == 'r' && stack2 != NULL)
+		return (rotate(stack2, NULL, mov));
+	else
+		return (print_movements("r", mov));
+
+}
+
+int	rev_rotate(t_stacks **stack, t_stacks **stack2, char mov)
+{
+	t_stacks *stack_aux;
+	t_stacks *last_node;
+
+    if (!stack || *stack == NULL)
+		return (-1);
+    stack_aux=*stack;
+    last_node=find_last_node(*stack);
+    if (*stack == last_node)
+        return (0);
+    *stack=last_node;
+    stack_aux->prev=last_node;
+    (*stack)->next=stack_aux;
+    last_node->prev->next=NULL;
+    (*stack)->prev=NULL;
+	if (mov == 'r' && stack2 != NULL)
+		return (rev_rotate(stack2, NULL, mov));
+	else
+		return (print_movements("r", mov));
+
 }

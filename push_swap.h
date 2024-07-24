@@ -32,8 +32,9 @@ typedef struct s_stacks
 }						t_stacks;
 
 //MAIN
-void			sort(t_stacks *a, t_stacks *b);
+void			sort(t_stacks **a, t_stacks **b);
 void			sort_2o3(t_stacks **stack);
+void			last_sort(t_stacks **a);
 void			update_stacks(t_stacks *a, t_stacks *b);
 int				push(t_stacks **src, t_stacks **dst, char mov);
 int				swap(t_stacks **stack, t_stacks **stack2, char mov);
@@ -57,12 +58,12 @@ int				print_movements(char *movement, char stack);
 //LST_UTILS
 int				load_stack(t_stacks **stack, char **numbers);
 int				append_node_end(t_stacks **stack, int nbr);
-int				append_node_start(t_stacks **stack, int nbr);
+//int				append_node_start(t_stacks **stack, int nbr);
 void			delete_node(t_stacks **stack, char positions);
 t_stacks		*find_last_node(t_stacks *stack);
 t_stacks		*find_smallest_node(t_stacks *stack);
 int				check_if_sorted(t_stacks *stack);
 int				node_count(t_stacks *stack);
-void			print_stacks(t_stacks **a, t_stacks **b, int details);
+void			print_stacks(t_stacks *a, t_stacks *b, int details);
 
 #endif

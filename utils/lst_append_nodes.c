@@ -39,7 +39,7 @@ int	append_node_end(t_stacks **stack, int nbr)
 	return (0);
 }
 
-int	append_node_start(t_stacks **stack, int nbr)
+/* int	append_node_start(t_stacks **stack, int nbr)
 {
 	t_stacks	*new_node;
 	t_stacks	*first_node;
@@ -58,3 +58,4 @@ int	append_node_start(t_stacks **stack, int nbr)
 	*stack = new_node;
 	return (0);
 }
+ */

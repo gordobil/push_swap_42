@@ -38,20 +38,22 @@ void	push_swap(char **numbers)
 	b = NULL;
 	mov = 0;
 	load_stack(&a, numbers);
-	print_stacks(&a, &b, 1);
 	update_stacks(a, b);
+	if (check_if_sorted(a) != 0 && node_count(a) <= 3)
+	{
+	 	sort_2o3(&a);
+		return ;
+	}
 	while (node_count(a) > 3)
 		push(&a, &b, 'b');
-	// if (check_if_sorted(a) != 0)
-	//  	sort_2o3(&a);
 	while (b != NULL)
 	{
 		update_stacks(a, b);
-		print_stacks(&a, &b, 1);
-		sort(a, b);
-		// while (b->prev != NULL)
-		// 	b = b->prev;
+		sort(&a, &b);
 	}
+	update_stacks(a, b);
+	if (check_if_sorted(a) != 0)
+		last_sort(&a);
 }
 
 int	main(int argc, char **argv)
