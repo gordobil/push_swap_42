@@ -167,6 +167,6 @@ int	rev_rotate(t_stacks **stack, t_stacks **stack2, char mov)
 	if (mov == 'r' && stack2 != NULL)
 		return (rev_rotate(stack2, NULL, mov));
 	else
-		return (print_movements("r", mov));
+		return (print_movements("rr", mov));
 
 }
