@@ -14,12 +14,13 @@
 
 int	print_movements(char *movement, char stack)
 {
-	if ((movement[0] == 'p' && movement[1] == '\0' && (stack == 'a' ||
-		stack == 'b')) || (movement[0] == 's' && movement[1] == '\0' &&
-		(stack == 'a' || stack == 'b' || stack == 's')) || (movement[0] == 'r'
-		&& movement[1] == '\0' && (stack == 'a' || stack == 'b' ||
-		stack == 'r')) || (movement[0] == 'r' && movement[1] == 'r' &&
-		movement[2] == '\0' && (stack == 'a' || stack == 'b' || stack == 'r')))
+	if ((movement[0] == 'p' && movement[1] == '\0' && (stack == 'a'
+				|| stack == 'b')) || (movement[0] == 's' && movement[1] == '\0'
+			&& (stack == 'a' || stack == 'b' || stack == 's'))
+		|| (movement[0] == 'r' && movement[1] == '\0' && (stack == 'a'
+				|| stack == 'b' || stack == 'r')) || (movement[0] == 'r'
+			&& movement[1] == 'r' && movement[2] == '\0' && (stack == 'a'
+				|| stack == 'b' || stack == 'r')))
 	{
 		ft_printf("%s%c\n", movement, stack);
 		return (0);

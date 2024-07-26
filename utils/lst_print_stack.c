@@ -17,13 +17,16 @@ void	print_stack(t_stacks *stack, int details)
 	t_stacks	*node;
 
 	node = malloc(sizeof(t_stacks));
-	node = stack;	
+	node = stack;
 	while (node)
 	{
 		if (details == 1)
-			ft_printf("n%d:%d mid:%d cost:%d move:%d \n\tpointer:%p prev:%p next:%p target:%p\n", node->i, node->n, node->mid, node->cost, node->move, node, node->prev, node->next, node->target);
-		// else if (details == 2)
-		// 	ft_printf("n%d:%d-->t%d:%d mid:%d cost:%d move:%d \n\tpointer:%p prev:%p next:%p target:%p\n", node->i, node->n, node->target->i, node->target->n, node->mid, node->cost, node->move, node, node->prev, node->next, node->target);
+		{
+			ft_printf("n%d:%d mid:%d cost:%d move:%d \n",
+				node->i, node->n, node->mid, node->cost, node->move);
+			ft_printf("\tpointer:%p prev:%p next:%p target:%p\n",
+				node, node->prev, node->next, node->target);
+		}
 		else
 		{
 			ft_printf("%d", node->n);

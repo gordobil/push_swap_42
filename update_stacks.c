@@ -12,68 +12,41 @@
 
 #include "push_swap.h"
 
-void	update_movement(t_stacks *b)
+void	update_movement(t_stacks *stack)
 {
 	t_stacks	*move;
 
-	move = b;
-	while (b != NULL)
+	move = stack;
+	while (stack != NULL)
 	{
-		if (b->cost <= move->cost)
+		if (stack->cost <= move->cost)
 		{
 			move->move = 0;
-			b->move = 1;
-			move = b;
+			stack->move = 1;
+			move = stack;
 		}
-		b = b->next;
+		stack = stack->next;
 	}
 }
 
-void	update_cost(t_stacks *a, t_stacks *b)
+void	update_cost(t_stacks *s1, t_stacks *s2)
 {
-	int	a_size;
-	int	b_size;
+	int	s1_size;
+	int	s2_size;
 
-	a_size = node_count(a);
-	b_size = node_count(b);
-	while (b != NULL)
+	s1_size = node_count(s1);
+	s2_size = node_count(s2);
+	while (s2 != NULL)
 	{
-		if (b->mid == 1)
-			b->cost = b_size - b->i;
+		if (s2->mid == 1)
+			s2->cost = s2_size - s2->i;
 		else
-			b->cost = b->i;
-		if (b->target->mid == 1)
-			b->cost = b->cost + (a_size - b->target->i);
+			s2->cost = s2->i;
+		if (s2->target->mid == 1)
+			s2->cost = s2->cost + (s1_size - s2->target->i);
 		else
-			b->cost = b->cost + b->target->i;
-		b = b->next;
-	}
-}
-
-void	update_target(t_stacks *a, t_stacks *b)
-{
-	t_stacks	*a_node;
-	t_stacks	*target;
-	int			target_num;
-
-	while (b)
-	{
-		a_node = a;
-		target_num = INT_MAX;
-		while (a_node)
-		{
-			if (a_node->n > b->n && a_node->n < target_num)
-			{
-				target_num = a_node->n;
-				target = a_node;
-			}
-			a_node = a_node->next;
-		}
-		if (target_num != INT_MAX)
-			b->target = target;
-		else
-			b->target = find_smallest_node(a);
-		b = b->next;
+			s2->cost = s2->cost + s2->target->i;
+		s2 = s2->next;
 	}
 }
 
@@ -97,11 +70,25 @@ void	update_index(t_stacks *stack)
 	}
 }
 
-void	update_stacks(t_stacks *a, t_stacks *b)
+void	update_stacks(t_stacks *s1, t_stacks *s2, char stack)
 {
-	update_index(a);
-	update_index(b);
-	update_target(a, b);
-	update_cost(a, b);
-	update_movement(b);
+	update_index(s1);
+	update_index(s2);
+	if (s2 != NULL)
+	{
+		if (stack == 'a')
+		{
+			update_targets_a(s1, s2);
+			free_targets(s1);
+		}
+		else
+		{
+			update_targets_b(s1, s2);
+			free_targets(s1);
+		}
+		update_cost(s1, s2);
+		update_movement(s2);
+	}
+	else
+		free_targets(s1);
 }

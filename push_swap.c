@@ -12,6 +12,33 @@
 
 #include "push_swap.h"
 
+int	append_node_end(t_stacks **stack, int nbr)
+{
+	t_stacks	*new_node;
+	t_stacks	*last_node;
+
+	new_node = malloc(sizeof(t_stacks));
+	if (!new_node || !stack)
+	{
+		ft_printf("Error\nError appending node\n");
+		return (-1);
+	}
+	new_node->next = NULL;
+	new_node->n = nbr;
+	if (!(*stack) || stack == NULL)
+	{
+		*stack = new_node;
+		new_node->prev = NULL;
+	}
+	else
+	{
+		last_node = find_last_node(*stack);
+		last_node->next = new_node;
+		new_node->prev = last_node;
+	}
+	return (0);
+}
+
 int	load_stack(t_stacks **stack, char **numbers)
 {
 	int	i;
@@ -32,26 +59,22 @@ void	push_swap(char **numbers)
 {
 	t_stacks	*a;
 	t_stacks	*b;
-	int			mov;
 
 	a = NULL;
 	b = NULL;
-	mov = 0;
 	load_stack(&a, numbers);
-	update_stacks(a, b);
-	if (check_if_sorted(a) != 0 && node_count(a) <= 3)
-	{
-	 	sort_2o3(&a);
+	if (check_if_sorted(a) == 0)
 		return ;
-	}
-	while (node_count(a) > 3)
+	while ((node_count(a) > 3) && (node_count(b) <= 2))
 		push(&a, &b, 'b');
+	if (first_sort(&a, &b) == 1)
+		return ;
 	while (b != NULL)
 	{
-		update_stacks(a, b);
-		sort(&a, &b);
+		update_stacks(a, b, 'b');
+		sort(&a, &b, 'a', 'b');
 	}
-	update_stacks(a, b);
+	update_stacks(a, b, 'b');
 	if (check_if_sorted(a) != 0)
 		last_sort(&a);
 }

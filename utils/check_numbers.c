@@ -12,27 +12,13 @@
 
 #include "../push_swap.h"
 
-int	check_min_max(long n)
-{
-	int		i;
-	long	min;
-	long	max;
-	
-	i = 0;
-	min = -2147483648;
-	max = 2147483647;
-	if (n < min || n > max)
-		return (-1);
-	return (0);
-}
-
 int	check_dups(char **numbers, char *current, int end)
 {
 	int	i;
 	int	j;
 	int	count;
 
-	i = 1;
+	i = 0;
 	while (numbers[i] != NULL && i < end)
 	{
 		j = 0;
@@ -43,7 +29,7 @@ int	check_dups(char **numbers, char *current, int end)
 				count++;
 			j++;
 		}
-		if (j == count && numbers[i][j] == '\0')
+		if (j == count && numbers[i][count] == '\0')
 			return (-1);
 		i++;
 	}
@@ -68,7 +54,7 @@ int	check_numbers(char **numbers)
 		}
 		if (check_dups(numbers, numbers[i], i) != 0)
 			return (-1);
-		if (check_min_max(ft_atoi(numbers[i])) != 0)
+		if (ft_atoi(numbers[i]) > INT_MAX || ft_atoi(numbers[i]) < INT_MIN)
 			return (-1);
 		i++;
 	}

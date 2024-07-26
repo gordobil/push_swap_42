@@ -20,6 +20,7 @@ UTILS				=	./utils/
 SOURCES				=	push_swap.c \
 						move_nodes.c \
 						update_stacks.c \
+						update_targets.c \
 						sort_stacks.c \
 
 SOURCES_PF			=	$(UTILS)check_numbers.c \
@@ -34,7 +35,6 @@ SOURCES_PF			=	$(UTILS)check_numbers.c \
 						$(UTILS)ft_puthex.c \
 						$(UTILS)ft_putptr.c \
 						$(UTILS)lst_utils.c \
-						$(UTILS)lst_append_nodes.c \
 						$(UTILS)lst_print_stack.c \
 						$(UTILS)print_movements.c \
 

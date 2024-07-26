@@ -14,20 +14,14 @@
 
 int	check_if_sorted(t_stacks *stack)
 {
-	int	sorted;
-
-	sorted = 0;
-	while (sorted == 0)
+	while (stack->next != NULL)
 	{
 		if (stack->n < stack->next->n)
 			stack = stack->next;
 		else
-		{
-			sorted = -1;
-			break ;
-		}
+			return (-1);
 	}
-	return (sorted);
+	return (0);
 }
 
 int	node_count(t_stacks *stack)
@@ -52,25 +46,6 @@ t_stacks	*find_last_node(t_stacks *stack)
 	return (stack);
 }
 
-void	delete_node(t_stacks **stack, char position)
-{
-	if (position == 's')
-	{
-		*stack = (*stack)->next;
-		free((*stack)->prev);
-		(*stack)->prev = NULL;
-	}
-	else if (position == 'e')
-	{
-		*stack = find_last_node(*stack);
-		*stack = (*stack)->prev;
-		free((*stack)->next);
-		(*stack)->next = NULL;
-		while ((*stack)->prev != NULL)
-			*stack = (*stack)->prev;
-	}
-}
-
 t_stacks	*find_smallest_node(t_stacks *stack)
 {
 	t_stacks	*smallest;
@@ -83,4 +58,18 @@ t_stacks	*find_smallest_node(t_stacks *stack)
 		stack = stack->next;
 	}
 	return (smallest);
+}
+
+t_stacks	*find_biggest_node(t_stacks *stack)
+{
+	t_stacks	*biggest;
+
+	biggest = stack;
+	while (stack != NULL)
+	{
+		if (stack->n > biggest->n)
+			biggest = stack;
+		stack = stack->next;
+	}
+	return (biggest);
 }
