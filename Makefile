@@ -23,7 +23,7 @@ SOURCES				=	push_swap.c \
 						update_targets.c \
 						sort_stacks.c \
 
-SOURCES_PF			=	$(UTILS)check_numbers.c \
+SOURCES_UT			=	$(UTILS)check_numbers.c \
 						$(UTILS)ft_atoi.c \
 						$(UTILS)ft_split.c \
 						$(UTILS)ft_substr.c \
@@ -39,7 +39,7 @@ SOURCES_PF			=	$(UTILS)check_numbers.c \
 						$(UTILS)print_movements.c \
 
 OBJECTS				=	$(SOURCES:%.c=%.o)
-OBJECTS_PF			=	$(SOURCES_PF:%.c=%.o)
+OBJECTS_UT			=	$(SOURCES_UT:%.c=%.o)
 
 INCLUDE				=	push_swap.h
 
@@ -64,12 +64,13 @@ export PUSH_SWAP
 
 all: 			$(NAME)
 
-$(NAME):		$(OBJECTS) $(OBJECTS_PF) $(INCLUDE)
-				$(CC) $(CC_FLAGS) $(OBJECTS) $(OBJECTS_PF) -o $(NAME)
+$(NAME):		$(OBJECTS) $(OBJECTS_UT) $(INCLUDE)
+				make -C ./bonus all
+				$(CC) $(CC_FLAGS) $(OBJECTS) $(OBJECTS_UT) -o $(NAME)
 				mkdir ./objects/
 				mkdir ./utils/objects/
 				mv $(OBJECTS) ./objects/
-				mv $(OBJECTS_PF) ./utils/objects/
+				mv $(OBJECTS_UT) ./utils/objects/
 				echo "\n···························· Compilation complete ····························"
 				echo "$$PUSH_SWAP"
 
@@ -78,12 +79,14 @@ clean:
 				rm -rf ./*.o
 				rm -rf ./utils/objects/
 				rm -rf ./utils/*.o
+				make -C ./bonus clean
 				echo "\n·······························"
 				echo "\n· Objects correctly removed."
 
 fclean:			clean
 				rm -rf $(NAME)
+				make -C ./bonus fclean
 				echo "· Executable correctly removed.\n"
 
 re:				fclean all
-.PHONY:			all clean fclean nl re
+.PHONY:			all clean fclean re
