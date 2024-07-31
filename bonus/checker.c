@@ -19,18 +19,14 @@
 
 char	**get_instructions()
 {
-	char	*inst;
-	int		rd;
+	char	*str;
+	char	**mov_list;
 	int		i;
 
-	rd = 1;
 	i = 0;
-	while (rd >= 0)
-	{
-		rd = read(0, inst, 20);
-	}
-	ft_printf("%s", inst);
-	ft_printf("%d\n", i);
+	
+	ft_printf("%s", str);
+	return (mov_list);
 }
 
 int	main(int argc, char **argv)
