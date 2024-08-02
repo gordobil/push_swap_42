@@ -23,7 +23,7 @@ int	first_sort(t_stacks **a, t_stacks **b)
 	{
 		if (check_if_sorted(*a) != 0)
 			sort_2o3(a);
-		if (*b == NULL)
+		if (*b == NULL && check_if_sorted(*a) == 0)
 			return (1);
 	}
 	return (0);
@@ -32,14 +32,18 @@ int	first_sort(t_stacks **a, t_stacks **b)
 void	sort_2o3(t_stacks **stack)
 {
 	update_stacks(*stack, NULL, 'x');
-	if ((*stack)->n > (*stack)->next->n
-		&& (*stack)->n > (*stack)->next->next->n && node_count(*stack) == 3)
+	if (node_count(*stack) == 2 && check_if_sorted(*stack) == -1)
+	{
+		swap(stack, NULL, 'a');
+		return ;
+	}
+	if (((*stack)->n > (*stack)->next->n)
+		&& ((*stack)->n > (*stack)->next->next->n) && (node_count(*stack) == 3))
 		rotate(stack, NULL, 'a');
-	else if ((*stack)->next->n > (*stack)->next->next->n
-		&& (*stack)->next->n > (*stack)->n && node_count(*stack) == 3)
+	else if (((*stack)->next->n > (*stack)->next->next->n)
+		&& ((*stack)->next->n > (*stack)->n) && (node_count(*stack) == 3))
 		rev_rotate(stack, NULL, 'a');
-	if ((*stack)->n > (*stack)->next->n || (node_count(*stack) == 2
-			&& (*stack)->n > (*stack)->next->n))
+	if (((*stack)->n) > ((*stack)->next->n))
 		swap(stack, NULL, 'a');
 }
 

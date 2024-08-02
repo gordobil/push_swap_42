@@ -12,29 +12,40 @@
 
 #include "push_swap.h"
 
+int	swap_2(t_stacks **stack, void *node1, void *node3, int node_c)
+{
+	if (node_c > 2)
+	{
+		(*stack)->next->next = node3;
+		(*stack)->next->next->prev = node1;
+	}
+	else
+		(*stack)->next->next = NULL;
+	(*stack)->prev = NULL;
+}
+
 int	swap(t_stacks **stack, t_stacks **stack2, char mov)
 {
 	void	*node1;
 	void	*node2;
 	void	*node3;
-	int		n1;
-	int		n2;
+	int		n[2];
+	int		node_c;
 
-	if (node_count(*stack) <= 1 || stack == NULL || !stack)
+	node_c = node_count(*stack);
+	if (node_c <= 1 || stack == NULL || !stack)
 		return (-1);
 	node1 = *stack;
 	node2 = (*stack)->next;
 	node3 = (*stack)->next->next;
-	n1 = (*stack)->n;
-	n2 = (*stack)->next->n;
+	n[0] = (*stack)->n;
+	n[1] = (*stack)->next->n;
 	*stack = node2;
-	(*stack)->n = n2;
+	(*stack)->n = n[1];
 	(*stack)->next = node1;
 	(*stack)->next->prev = node2;
-	(*stack)->next->n = n1;
-	(*stack)->next->next = node3;
-	(*stack)->next->next->prev = node1;
-	(*stack)->prev = NULL;
+	(*stack)->next->n = n[0];
+	swap_2(stack, node1, node3, node_c);
 	if (mov == 's' && stack2 != NULL)
 		return (swap(stack2, NULL, mov));
 	else
