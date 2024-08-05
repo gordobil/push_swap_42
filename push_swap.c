@@ -87,8 +87,9 @@ int	main(int argc, char **argv)
 		argv = ft_split (argv[1], ' ');
 	else
 		argv++;
-	if (argv == NULL || check_numbers(argv) != 0 || argv[0] == NULL
-		|| argv[1] == NULL)
+	if (argv[1] == NULL)
+		return (0);
+	if (argv == NULL || check_numbers(argv) != 0 || argv[0] == NULL)
 	{
 		ft_printf ("Error\nInvalid arguments\n");
 		return (0);
