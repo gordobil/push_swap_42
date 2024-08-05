@@ -82,10 +82,7 @@ void	push_swap(char **numbers)
 int	main(int argc, char **argv)
 {
 	if (argc < 2 || (argc >= 2 && !argv[1][0]))
-	{
-		ft_printf ("Error\nInvalid arguments\n");
 		return (0);
-	}
 	if (argc == 2)
 		argv = ft_split (argv[1], ' ');
 	else

@@ -65,7 +65,6 @@ export PUSH_SWAP
 all: 			$(NAME)
 
 $(NAME):		$(OBJECTS) $(OBJECTS_UT) $(INCLUDE)
-				make -C ./bonus all
 				$(CC) $(CC_FLAGS) $(OBJECTS) $(OBJECTS_UT) -o $(NAME)
 				mkdir ./objects/
 				mkdir ./utils/objects/
@@ -79,13 +78,11 @@ clean:
 				rm -rf ./*.o
 				rm -rf ./utils/objects/
 				rm -rf ./utils/*.o
-				make -C ./bonus clean
 				echo "\n·······························"
 				echo "\n· Objects correctly removed."
 
 fclean:			clean
 				rm -rf $(NAME)
-				make -C ./bonus fclean
 				echo "· Executable correctly removed.\n"
 
 re:				fclean all
