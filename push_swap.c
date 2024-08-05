@@ -20,7 +20,7 @@ int	append_node_end(t_stacks **stack, int nbr)
 	new_node = malloc(sizeof(t_stacks));
 	if (!new_node || !stack)
 	{
-		ft_printf("Error\nError appending node\n");
+		ft_printf("Error\n");
 		return (-1);
 	}
 	new_node->next = NULL;
@@ -91,7 +91,7 @@ int	main(int argc, char **argv)
 		return (0);
 	if (argv == NULL || check_numbers(argv) != 0 || argv[0] == NULL)
 	{
-		ft_printf ("Error\nInvalid arguments\n");
+		ft_printf ("Error\n");
 		return (0);
 	}
 	push_swap(argv);

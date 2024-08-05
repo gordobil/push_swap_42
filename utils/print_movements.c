@@ -27,7 +27,7 @@ int	print_movements(char *movement, char stack)
 	}
 	else
 	{
-		ft_printf("Error\nMovement error\n");
+		ft_printf("Error\n");
 		return (-1);
 	}
 }
